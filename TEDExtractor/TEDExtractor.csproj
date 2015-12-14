@@ -43,8 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extractor.cs" />
+    <Compile Include="TEDExtractor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TEDItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Extractor.API\Extractor.Models.csproj">

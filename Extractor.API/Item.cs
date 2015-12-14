@@ -1,14 +1,24 @@
-﻿namespace Extractor.Models
+﻿using System.Collections.Generic;
+
+namespace Extractor.Models
 {
-    public class Item
+    public abstract class Item
     {
-        public object Data { get; private set; }
-        public DataType Type { get; private set; }
+        private Dictionary<string, object> data = new Dictionary<string, object>();
 
-
-        public Item(object data)
+        protected void SetKeyValue(string key, object value)
         {
-            Data = data;
+            data[key] = value;
         }
+
+        public object GetValue(string key)
+        {
+            if (!data.ContainsKey(key))
+                return null;
+            else
+                return data[key];
+        }
+
+        public abstract IReadOnlyList<string> GetKeys();
     }
 }

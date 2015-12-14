@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace TEDExtractor
 {
-    public class Extractor : AbstractExtractor
+    public class TEDExtractor : AbstractExtractor
     {
         public override bool CanExtract(InputData input)
         {
@@ -19,13 +19,11 @@ namespace TEDExtractor
 
         public override List<Item> Extract(InputData input)
         {
-            List<Item> results = new List<Item>();
-
-            List<ID> ids = GetIDs((string) input.Data);
+            List<TEDItem> ids = CreateItemsFromData((string) input.Data);
             
             foreach (var id in ids)
             {
-                string url = SearchUrl + ToQuery(id.Name);
+                string url = SearchUrl + ToQuery((string)id.GetValue(TEDItem.Speaker));
 
                 WebClient client = GetWebClient();
 
@@ -46,7 +44,7 @@ namespace TEDExtractor
                     int end = page.IndexOf('<', start + 1);
                     string[] monthyear = page.Substring(start, end - start).Trim().Split(' ');
 
-                    if (monthyear[1] == id.Year)
+                    if (monthyear[1] == (string) id.GetValue(TEDItem.Year))
                     {
                         finalTitle = title;
                         finalUrl = link;
@@ -57,12 +55,14 @@ namespace TEDExtractor
                 if (finalUrl != null)
                 {
                     string fullLink = String.Format(OutputFormat, finalUrl, finalTitle);
-                    results.Add(new Item(fullLink));
+                    id.SetFormattedLink(fullLink);
+                    id.SetRawLink(finalUrl);
+                    id.SetTitle(finalTitle);
                 }
             }
 
 
-            return results;
+            return ids.ToList<Item>();
         }
 
         private string ToQuery(string name)
@@ -70,21 +70,15 @@ namespace TEDExtractor
             return name.Replace(" ", "+");
         }
 
-        struct ID
-        {
-            public string Name { get; set; }
-            public string Year { get; set; }
-
-        }
-
+        
 
         private const string OutputFormat = "<a href='{0}'>{1}</a>";
         private const string BaseUrl = "http://www.ted.com";
         private const string SearchUrl = BaseUrl + "/search?cat=talks&q=";
 
-        private List<ID> GetIDs(string data)
+        private List<TEDItem> CreateItemsFromData(string data)
         {
-            List<ID> ids = new List<ID>();
+            List<TEDItem> items = new List<TEDItem>();
 
             StringReader sr = new StringReader(data);
 
@@ -119,15 +113,12 @@ namespace TEDExtractor
                     name.Append(c);
                 }
 
-                var id = new ID() {
-                    Name = name.ToString(),
-                    Year = parts[1]
-                };
+                var id = new TEDItem(name.ToString(), parts[1]);
 
-                ids.Add(id);
+                items.Add(id);
             }
 
-            return ids;
+            return items;
             
         }
 
