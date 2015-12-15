@@ -11,6 +11,13 @@ namespace Extractor.Models
         public abstract bool CanExtract(InputData input);
 
         public abstract List<Item> Extract(InputData input);
+        
+        public abstract string Description { get; }
+
+        protected static List<Item> ToItemList<T>(List<T> items) where T : Item
+        {
+            return items.Cast<Item>().ToList();
+        } 
     }
     
 }

@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8C00DBAB-1107-4AA0-8493-48BABB147886}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{43BED45D-4C7B-4EE8-8E6B-06609DBC1214}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Extractor.TestClient</RootNamespace>
-    <AssemblyName>Extractor.TestClient</AssemblyName>
+    <RootNamespace>SlideShareLike</RootNamespace>
+    <AssemblyName>SlideShareLike</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -33,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\..\..\..\Visual Studio 2013\Lib\HtmlAgility\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,24 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="SlideShareItem.cs" />
+    <Compile Include="SlideShareLikeExtractor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Extractor.API\Extractor.Models.csproj">
       <Project>{3f6ad28b-7168-4e41-a627-b8b7bd345a5c}</Project>
       <Name>Extractor.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SlideShareLike\SlideShareLike.csproj">
-      <Project>{43bed45d-4c7b-4ee8-8e6b-06609dbc1214}</Project>
-      <Name>SlideShareLike</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TEDExtractor\TEDExtractor.csproj">
-      <Project>{5e493c08-4677-4f41-a884-78aab3594391}</Project>
-      <Name>TEDExtractor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

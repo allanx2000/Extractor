@@ -12,6 +12,14 @@ namespace TEDExtractor
 {
     public class TEDExtractor : AbstractExtractor
     {
+        public override string Description
+        {
+            get
+            {
+                return "Reads a list of TED video files and downloads their relevant data from TED.";
+            }
+        }
+
         public override bool CanExtract(InputData input)
         {
             return input.DataType == DataType.PlainText;
@@ -62,7 +70,7 @@ namespace TEDExtractor
             }
 
 
-            return ids.ToList<Item>();
+            return ToItemList(ids); //Probably should just move them to a List<Item> instead
         }
 
         private string ToQuery(string name)
@@ -80,6 +88,7 @@ namespace TEDExtractor
         {
             List<TEDItem> items = new List<TEDItem>();
 
+            //TODO: Create generic split instead?
             StringReader sr = new StringReader(data);
 
             string line;
@@ -123,6 +132,7 @@ namespace TEDExtractor
         }
 
         private WebClient client;
+
         private WebClient GetWebClient()
         {
             if (client == null)

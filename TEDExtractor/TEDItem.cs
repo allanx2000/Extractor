@@ -43,13 +43,7 @@ namespace TEDExtractor
             SetKeyValue(Title, title);
         }
 
-        private static IReadOnlyList<string> keys = new List<string>()
-        {
-            Speaker,
-            Year,
-            RawLink,
-            FormattedLink
-        }.AsReadOnly();
+        private static IReadOnlyList<string> keys = MakeReadOnly(Speaker, Year, RawLink, FormattedLink);
 
         public override IReadOnlyList<string> GetKeys()
         {

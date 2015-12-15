@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Extractor.TestClient", "Ext
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TEDExtractor", "TEDExtractor\TEDExtractor.csproj", "{5E493C08-4677-4F41-A884-78AAB3594391}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlideShareLike", "SlideShareLike\SlideShareLike.csproj", "{43BED45D-4C7B-4EE8-8E6B-06609DBC1214}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{5E493C08-4677-4F41-A884-78AAB3594391}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E493C08-4677-4F41-A884-78AAB3594391}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E493C08-4677-4F41-A884-78AAB3594391}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43BED45D-4C7B-4EE8-8E6B-06609DBC1214}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43BED45D-4C7B-4EE8-8E6B-06609DBC1214}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43BED45D-4C7B-4EE8-8E6B-06609DBC1214}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43BED45D-4C7B-4EE8-8E6B-06609DBC1214}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

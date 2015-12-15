@@ -20,5 +20,16 @@ namespace Extractor.Models
         }
 
         public abstract IReadOnlyList<string> GetKeys();
+
+        protected static IReadOnlyList<string> MakeReadOnly(params string[] keys)
+        {
+            var items = new List<string>();
+            foreach (var i in keys)
+            {
+                items.Add(i);
+            }
+
+            return items.AsReadOnly();
+        }
     }
 }

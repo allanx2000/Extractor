@@ -9,6 +9,7 @@ namespace Extractor.Models
     public enum DataType
     {
         PlainText,
-        Html
+        Html,
+        FilePath
     }
 }
