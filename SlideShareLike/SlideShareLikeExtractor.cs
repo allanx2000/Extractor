@@ -15,31 +15,43 @@ namespace SlideShareLike
         {
             get
             {
-                throw new NotImplementedException();
+                return "Reads the links from Slideshare users' Liked page. Accepts the raw exported HTML or a path it on a local drive.";
             }
         }
 
         public override bool CanExtract(InputData input)
         {
-            return input.DataType == DataType.FilePath && File.Exists((string)input.Data);
+            return (File.Exists((string)input.Data) && input.DataType == DataType.FilePath)
+                || input.DataType == DataType.Html;
         }
 
         public override List<Item> Extract(InputData input)
         {
-            string htmlPath = (string)input.Data;
-            if (!File.Exists(htmlPath))
+            HtmlDocument doc = new HtmlDocument();
+
+            string data = (string)input.Data;
+
+            switch (input.DataType)
             {
-                throw new Exception("The entered path is invalid");
+                case DataType.FilePath:
+                    if (!File.Exists(data))
+                    {
+                        throw new Exception("The entered path is invalid");
+                    }
+
+                    doc.Load(data);
+                    break;
+                case DataType.Html:
+                    doc.LoadHtml(data);
+                    break;
+                default:
+                    throw new NotSupportedException();
             }
 
             List<SlideShareItem> items = new List<SlideShareItem>();
-
-            HtmlDocument doc = new HtmlDocument();
-            doc.Load(htmlPath);
-
+            
             var nodes = doc.DocumentNode.SelectNodes("//div[@id='slideshows']/ul/li");
-
-
+            
             foreach (var node in nodes)
             {
                 var link = node.SelectSingleNode(".//a");
@@ -51,6 +63,6 @@ namespace SlideShareLike
             }
 
             return ToItemList(items);
-        }   
+        }
     }
 }
