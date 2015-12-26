@@ -19,6 +19,22 @@ namespace SlideShareLike
             }
         }
 
+        private List<DataType> valid;
+        public override ICollection<DataType> ValidTypes
+        {
+            get
+            {
+                if (valid != null)
+                    valid = new List<DataType>()
+                    {
+                        DataType.Html,
+                        DataType.FilePath
+                    };
+
+                return valid;
+            }
+        }
+
         public override bool CanExtract(InputData input)
         {
             return (File.Exists((string)input.Data) && input.DataType == DataType.FilePath)

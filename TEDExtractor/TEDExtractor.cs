@@ -20,9 +20,19 @@ namespace TEDExtractor
             }
         }
 
-        public override bool CanExtract(InputData input)
+        private List<DataType> valid;
+        public override ICollection<DataType> ValidTypes
         {
-            return input.DataType == DataType.PlainText;
+            get
+            {
+                if (valid != null)
+                    valid = new List<DataType>()
+                    {
+                        DataType.PlainText
+                    };
+
+                return valid;
+            }
         }
 
         public override List<Item> Extract(InputData input)

@@ -8,11 +8,15 @@ namespace Extractor.Models
 {
     public abstract class AbstractExtractor
     {
-        public abstract bool CanExtract(InputData input);
+        public virtual bool CanExtract(InputData input)
+        {
+            return input != null && ValidTypes.Contains(input.DataType);
+        }
 
         public abstract List<Item> Extract(InputData input);
         
         public abstract string Description { get; }
+        public abstract ICollection<DataType> ValidTypes { get; }
 
         protected static List<Item> ToItemList<T>(List<T> items) where T : Item
         {
