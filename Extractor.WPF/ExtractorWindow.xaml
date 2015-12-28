@@ -35,30 +35,37 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right">Extractor:</Label>
-                <ComboBox Grid.Row="0" Grid.Column="1" 
+                <ComboBox Grid.Row="0" Grid.Column="1" IsEnabled="{Binding CanSelectExtractor}"
                           ItemsSource="{Binding Extractors}" SelectedItem="{Binding SelectedExtractor}"/>
                 <Button Grid.Row="0" Grid.Column="2" IsEnabled="{Binding DetailsButtonEnabled}" Command="{Binding ShowDetails}">Details...</Button>
                 
                 <Label Grid.Column="0" Grid.Row="1">Input Type:</Label>
                 <ComboBox Grid.Column="1" Grid.Row="1" IsEnabled="{Binding CanSelectInput}" ItemsSource="{Binding ValidInputs}" SelectedItem="{Binding SelectedInput}"/>
 
-                <Button Grid.Row="2" Margin="10" Grid.ColumnSpan="4" HorizontalAlignment="Center" Command="{Binding ToggleSelectCommand}" Content="{Binding ToggleSelectText, FallbackValue=UnSet}" />
+                <Button Grid.Row="2" Margin="10" Grid.ColumnSpan="4" 
+                        HorizontalAlignment="Center" Width="70" 
+                        Command="{Binding ToggleSetCommand}" Content="{Binding SetText, FallbackValue=UnSet}" />
             </Grid>
         </GroupBox>
 
         <GroupBox Grid.Row="1" Visibility="{Binding OptionsVisibility}" Header="Options">
-
+            <local:OptionsControl x:Name="OptionsCtrl" Width="300" HorizontalAlignment="Left" />
         </GroupBox>
-
 
         <GroupBox Grid.Row="2" Visibility="{Binding InputPathVisibility}" Header="Input Path">
-            
+            <StackPanel Orientation="Horizontal">
+                <Label>Path:</Label>
+                <TextBox Width="200" Text="{Binding InputPath}"/>
+                <Button Command="{Binding BrowsePathCommand}">Browse... </Button>
+            </StackPanel>            
         </GroupBox>
 
-        <Button Width="150" Grid.Row="3" Visibility="{Binding ExtractVisibility}" >Extract</Button>
+        <Button Width="150" Grid.Row="3" Command="{Binding ExtractCommand}" Visibility="{Binding ExtractVisibility}" >Extract</Button>
         
-        <GroupBox Grid.Row="4" Header="Output" Visibility="{Binding InputPathVisibility}">
-            <TextBox IsReadOnly="True" AcceptsReturn="True" MinHeight="300"/>
+        <GroupBox Grid.Row="4" Header="Output" Visibility="{Binding OutputVisibility}">
+            <TextBox IsReadOnly="True" AcceptsReturn="True" MinHeight="300" Text="{Binding OutputText}"
+                     HorizontalContentAlignment="Left" VerticalContentAlignment="Top"
+                     ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" />
         </GroupBox>
 
     </Grid>

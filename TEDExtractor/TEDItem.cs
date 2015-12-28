@@ -15,6 +15,12 @@ namespace TEDExtractor
         public const string RawLink = "RawLink";
         public const string Title = "Title";
 
+
+        public override string GetDefaultText()
+        {
+            return (string) GetValue(FormattedLink);
+        }
+
         public TEDItem(string speaker, string year, string rawLink = null, string formattedLink = null)
         {
             this.SetKeyValue(Speaker, speaker);
@@ -49,6 +55,6 @@ namespace TEDExtractor
         {
             return keys;
         }
-
+        
     }
 }

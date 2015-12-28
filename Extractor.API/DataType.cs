@@ -10,6 +10,7 @@ namespace Extractor.Models
     {
         PlainText,
         Html,
-        FilePath
+        FilePath,
+        FolderPath
     }
 }

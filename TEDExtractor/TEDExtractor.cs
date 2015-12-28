@@ -16,7 +16,7 @@ namespace TEDExtractor
         {
             get
             {
-                return "Reads a list of TED video files and downloads their relevant data from TED.";
+                return "Accepts either list of TED video files or path containing them. Then downloads their relevant data from TED.";
             }
         }
 
@@ -25,10 +25,11 @@ namespace TEDExtractor
         {
             get
             {
-                if (valid != null)
+                if (valid == null)
                     valid = new List<DataType>()
                     {
-                        DataType.PlainText
+                        DataType.PlainText,
+                        DataType.FolderPath
                     };
 
                 return valid;
@@ -37,7 +38,7 @@ namespace TEDExtractor
 
         public override List<Item> Extract(InputData input)
         {
-            List<TEDItem> ids = CreateItemsFromData((string) input.Data);
+            List<TEDItem> ids = CreateItemsFromData(input);
             
             foreach (var id in ids)
             {
@@ -94,16 +95,34 @@ namespace TEDExtractor
         private const string BaseUrl = "http://www.ted.com";
         private const string SearchUrl = BaseUrl + "/search?cat=talks&q=";
 
-        private List<TEDItem> CreateItemsFromData(string data)
+        private List<TEDItem> CreateItemsFromData(InputData data)
         {
+            List<string> files = new List<string>();
+
+            string text = (string) data.Data.ToString();
+
+            if (data.DataType == DataType.FolderPath)
+            {
+                files.AddRange(Directory.GetFiles(data.Data.ToString()));
+            }
+            else //Plaintext files
+            {
+                StringReader sr = new StringReader(text);
+
+                string line;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    files.Add(line);
+                }
+
+            }
+
             List<TEDItem> items = new List<TEDItem>();
 
-            //TODO: Create generic split instead?
-            StringReader sr = new StringReader(data);
-
-            string line;
-            while ((line = sr.ReadLine()) != null)
+            foreach (string path in files)
             {
+                string line = path;
+
                 line = line.Substring(line.LastIndexOf('\\') + 1);
                 line = line.Substring(0, line.IndexOf('-'));
                 string[] parts = line.Split('_');

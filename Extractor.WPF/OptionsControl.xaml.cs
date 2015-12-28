@@ -1,5 +1,4 @@
-﻿using Extractor.WPF.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,18 +16,29 @@ using System.Windows.Shapes;
 namespace Extractor.WPF
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for OptionsControl.xaml
     /// </summary>
-    public partial class ExtractorWindow : Window
+    public partial class OptionsControl : UserControl
     {
-        private readonly ExtractorWindowViewModel vm;
-
-        public ExtractorWindow()
+        public OptionsControl()
         {
             InitializeComponent();
+        }
 
-            vm = new ExtractorWindowViewModel(OptionsCtrl, this);
-            this.DataContext = vm;
+        public string PrependText
+        {
+            get
+            {
+                return PrependTextBox.Text;
+            }
+        }
+
+        public string AppendText
+        {
+            get
+            {
+                return AppendTextBox.Text;
+            }
         }
     }
 }

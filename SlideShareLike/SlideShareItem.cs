@@ -19,7 +19,12 @@ namespace SlideShareLike
             this.SetKeyValue(Title, title);
             this.SetKeyValue(URL, url);
         }
-        
+
+        public override string GetDefaultText()
+        {
+            return "<a href='" + GetValue(URL) + "'>" + GetValue(Title) + "</a>";
+        }
+
         public override IReadOnlyList<string> GetKeys()
         {
             return keys;

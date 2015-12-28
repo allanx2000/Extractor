@@ -24,7 +24,8 @@ namespace SlideShareLike
         {
             get
             {
-                if (valid != null)
+                //TODO: move to abstract constructor
+                if (valid == null)
                     valid = new List<DataType>()
                     {
                         DataType.Html,

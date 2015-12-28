@@ -31,5 +31,7 @@ namespace Extractor.Models
 
             return items.AsReadOnly();
         }
+
+        public abstract string GetDefaultText();
     }
 }
