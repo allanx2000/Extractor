@@ -21,7 +21,9 @@ namespace Extractor.Models
         protected static List<Item> ToItemList<T>(List<T> items) where T : Item
         {
             return items.Cast<Item>().ToList();
-        } 
+        }
+
+        public abstract IReadOnlyList<string> GetItemKeys();
     }
     
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Extractor.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,16 @@ namespace Extractor.WPF
         public OptionsControl()
         {
             InitializeComponent();
+        }
+
+        private AbstractExtractor extractor;
+        public void SetExtractor(AbstractExtractor extractor)
+        {
+            this.extractor = extractor;
+
+            var keys = extractor.GetItemKeys();
+            
+                        
         }
 
         public string PrependText

@@ -6,21 +6,48 @@
              xmlns:local="clr-namespace:Extractor.WPF"
              mc:Ignorable="d" 
              d:DesignWidth="300">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+    <StackPanel>
+        <GroupBox Header="Body Format">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+                <RadioButton Margin="10" VerticalAlignment="Center" Grid.Row="0">Default</RadioButton>
+                <TextBox Grid.Row="0" Grid.Column="1" Name="GeneralPreview" IsReadOnly="True"/>
 
-        <Label Grid.Row="0" Grid.Column="0">Prepend:</Label>
-        <TextBox Grid.Row="0" Grid.Column="1" Name="PrependTextBox"/>
-        
-        <Label Grid.Row="1" Grid.Column="0">Append:</Label>
-        <TextBox Grid.Row="1" Grid.Column="1" Name="AppendTextBox"/>
-    </Grid>
+                <RadioButton Margin="10" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" >Custom</RadioButton>
+                <Label Grid.Row="1" Grid.Column="1">Tokens</Label>
+                <TextBox Grid.Row="2" Grid.Column="1">CustomText</TextBox>
+
+
+
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Modifiers">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0">Prepend:</Label>
+            <TextBox Grid.Row="0" Grid.Column="1" Name="PrependTextBox"/>
+
+            <Label Grid.Row="1" Grid.Column="0">Append:</Label>
+            <TextBox Grid.Row="1" Grid.Column="1" Name="AppendTextBox"/>
+        </Grid>
+        </GroupBox>
+    </StackPanel>
 </UserControl>

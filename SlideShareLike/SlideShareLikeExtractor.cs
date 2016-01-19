@@ -81,5 +81,10 @@ namespace SlideShareLike
 
             return ToItemList(items);
         }
+
+        public override IReadOnlyList<string> GetItemKeys()
+        {
+            return SlideShareItem.Keys;
+        }
     }
 }

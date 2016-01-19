@@ -171,5 +171,10 @@ namespace TEDExtractor
 
             return client;
         }
+
+        public override IReadOnlyList<string> GetItemKeys()
+        {
+            return TEDItem.Keys;
+        }
     }
 }

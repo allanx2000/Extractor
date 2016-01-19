@@ -12,7 +12,7 @@ namespace SlideShareLike
         public const string Title = "Title";
         public const string URL = "URL";
 
-        private static IReadOnlyList<string> keys = MakeReadOnly(Title, URL);
+        internal static IReadOnlyList<string> Keys = MakeReadOnly(Title, URL);
         
         public SlideShareItem(string title, string url)
         {
@@ -27,7 +27,7 @@ namespace SlideShareLike
 
         public override IReadOnlyList<string> GetKeys()
         {
-            return keys;
+            return Keys;
         }
     }
 }

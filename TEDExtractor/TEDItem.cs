@@ -15,6 +15,7 @@ namespace TEDExtractor
         public const string RawLink = "RawLink";
         public const string Title = "Title";
 
+        internal static IReadOnlyList<string> Keys = MakeReadOnly(Speaker, Year, FormattedLink, RawLink, Title);
 
         public override string GetDefaultText()
         {
@@ -49,12 +50,9 @@ namespace TEDExtractor
             SetKeyValue(Title, title);
         }
 
-        private static IReadOnlyList<string> keys = MakeReadOnly(Speaker, Year, RawLink, FormattedLink);
-
         public override IReadOnlyList<string> GetKeys()
         {
-            return keys;
+            throw new NotImplementedException();
         }
-        
     }
 }
